@@ -1,6 +1,8 @@
 package com.controller;
 
+import com.entity.User;
 import com.service.TestService;
+import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +23,15 @@ public class TestController {
     @Autowired
     private TestService testService;
 
+    @Autowired
+    private UserService userService;
+
 
     @ResponseBody
     @RequestMapping(value = "test.do")
     public String sayHello(){
         System.out.println("hello spring mvc");
-        return testService.sayHello();
+        User user1 = userService.getUser();
+        return user1.getUsername();
     }
 }
